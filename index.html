@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>just5min — Browser Tools</title>
+  <meta name="description" content="A collection of small, focused design &amp; development utilities. No tracking, no accounts — everything runs in your browser." />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/styles/index.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+      <button class="mobile-toggle" id="mobile-toggle">☰</button>
+      <span style="font-weight:600;margin-left:8px;">just5min</span>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-logo">
+        <div class="sidebar-logo-icon"><img src="/favicon-32x32.png" alt="just5min" style="width:24px;height:24px;" /></div>
+        <div>
+          <div class="sidebar-logo-text">just5min</div>
+          <div class="sidebar-logo-sub">browser tools</div>
+        </div>
+      </div>
+      <div class="sidebar-search">
+        <input type="text" id="sidebar-search" placeholder="Search tools..." />
+      </div>
+      <nav class="sidebar-nav" id="sidebar-nav"></nav>
+      <div class="sidebar-footer">
+        No logins. No tracking.<br />
+        Long live the handmade web.
+      </div>
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Main -->
+    <main class="main-content">
+      <div class="top-bar" id="top-bar">
+        <div class="top-bar-left">
+          <span class="icon">🏠</span>
+          <span>Home</span>
+        </div>
+        <div class="top-bar-center" id="top-bar-ca"></div>
+        <div class="top-bar-right"></div>
+      </div>
+      <div class="main-inner" id="main-content"></div>
+    </main>
+  </div>
+
+  <div class="toast-container" id="toast-container"></div>
+
+  <script type="module" src="/src/app.js"></script>
+</body>
+</html>

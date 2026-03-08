@@ -1,0 +1,71 @@
+:root {
+  /* ─── Delphi-style parchment palette ─── */
+  --bg-primary: #fdfcf0;
+  --bg-sidebar: #f7f5e8;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f9f8f0;
+  --bg-input: #ffffff;
+  --bg-muted: #f5f3e6;
+  --bg-glass: #faf9ed;
+
+  /* ─── Text ─── */
+  --text-primary: #1c1917;
+  --text-secondary: #57534e;
+  --text-tertiary: #78716c;
+  --text-muted: #a8a29e;
+
+  /* ─── Accent (amber / orange) ─── */
+  --accent-primary: #b45309;
+  --accent-hover: #92400e;
+  --accent-light: #fef3c7;
+  --accent-glow: rgba(180, 83, 9, 0.08);
+
+  /* ─── Borders ─── */
+  --border-primary: #e7e5e4;
+  --border-secondary: #d6d3d1;
+  --border-accent: #b45309;
+
+  /* ─── Status ─── */
+  --success: #15803d;
+  --warning: #b45309;
+  --error: #dc2626;
+
+  /* ─── Typography ─── */
+  --font-mono: 'Geist Mono', 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+  --font-sans: 'Geist Mono', 'JetBrains Mono', monospace;
+  --font-size-xs: 11px;
+  --font-size-sm: 12px;
+  --font-size-base: 13px;
+  --font-size-md: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 18px;
+  --font-size-2xl: 22px;
+  --font-size-3xl: 28px;
+
+  /* ─── Spacing ─── */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 24px;
+  --spacing-2xl: 32px;
+  --spacing-3xl: 48px;
+
+  /* ─── Radii ─── */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  /* ─── Shadows ─── */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 2px 6px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+  /* ─── Sidebar ─── */
+  --sidebar-width: 220px;
+
+  /* ─── Transitions ─── */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.2s ease;
+}

@@ -1,0 +1,22 @@
+{
+  "name": "launch-tools",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A collection of handmade browser-based design & dev tools",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "vite": "^5.4.21"
+  },
+  "dependencies": {
+    "jsbarcode": "^3.12.3",
+    "qrcode": "^1.5.4"
+  }
+}
