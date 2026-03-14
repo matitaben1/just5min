@@ -2,6 +2,12 @@ import { TOOLS, CATEGORIES } from './tools.js';
 
 // Dynamic tool module loading
 const toolModules = {
+  // UI/UX Design (New additions)
+  'glassmorphism-gen': () => import('./tools/glassmorphism-gen.js'),
+  'shadow-smoother': () => import('./tools/shadow-smoother.js'),
+  'golden-ratio': () => import('./tools/golden-ratio.js'),
+
+  // Existing tools
   'launch-system': () => import('./tools/launch-system.js'),
   'qr-generator': () => import('./tools/qr-generator.js'),
   'palette-generator': () => import('./tools/palette-generator.js'),
@@ -40,30 +46,66 @@ const toolModules = {
   'time-calculator': () => import('./tools/time-calculator.js'),
 };
 
-const mainContent = document.getElementById('main-content');
-const sidebarNav = document.getElementById('sidebar-nav');
-const searchInput = document.getElementById('sidebar-search');
-const sidebar = document.getElementById('sidebar');
-const topBar = document.getElementById('top-bar');
+// ─── DOM References ───
+const heroSection = document.getElementById('hero-section');
+const appShell = document.getElementById('app-shell');
 
+let mainContent, sidebarNav, searchInput, sidebar, topBar;
+let appInitialized = false;
 let currentCleanup = null;
 
 // ─── Contract Address from .env ───
 const CA = import.meta.env.VITE_CA || '';
 
-// ─── Top Bar ───
-function updateTopBar(title, icon) {
-  const leftEl = document.querySelector('.top-bar-left');
-  if (leftEl) {
-    leftEl.innerHTML = `<span class="icon">${icon || '⊙'}</span><span>${title || 'Home'}</span>`;
-  }
+// Populate Hero CA (Landing Page)
+const heroCaEl = document.getElementById('hero-ca-container');
+if (heroCaEl && CA) {
+  heroCaEl.style.display = 'flex';
+  heroCaEl.innerHTML = `
+    <span style="font-size: 13px; font-weight: 600; color: rgba(255, 255, 255, 0.8); letter-spacing: 0.5px;">CA:</span>
+    <span id="hero-ca-display" title="Click to copy" style="background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.2); padding: 6px 16px; border-radius: 50px; color: #fff; font-family: var(--font-mono); font-size: 13px; font-weight: 500; cursor: pointer; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: all 0.2s ease; letter-spacing: 0.3px;">${CA}</span>
+  `;
+  
+  const displayEl = document.getElementById('hero-ca-display');
+  
+  // Custom hover effects
+  displayEl.addEventListener('mouseenter', () => {
+    displayEl.style.background = 'rgba(255, 255, 255, 0.25)';
+    displayEl.style.borderColor = 'rgba(255, 255, 255, 0.4)';
+  });
+  displayEl.addEventListener('mouseleave', () => {
+    displayEl.style.background = 'rgba(255, 255, 255, 0.15)';
+    displayEl.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+  });
+
+  // Copy on click
+  displayEl.addEventListener('click', () => {
+    navigator.clipboard.writeText(CA).then(() => {
+      const orig = displayEl.textContent;
+      displayEl.textContent = 'Copied!';
+      displayEl.style.background = 'rgba(255, 255, 255, 0.3)';
+      setTimeout(() => { 
+        displayEl.textContent = orig; 
+        displayEl.style.background = 'rgba(255, 255, 255, 0.15)';
+      }, 1500);
+    });
+  });
 }
 
-// Populate CA in header center
-function initCA() {
+// ─── Initialize App Shell (lazy, only when needed) ───
+function initAppShell() {
+  if (appInitialized) return;
+  appInitialized = true;
+
+  mainContent = document.getElementById('main-content');
+  sidebarNav = document.getElementById('sidebar-nav');
+  searchInput = document.getElementById('sidebar-search');
+  sidebar = document.getElementById('sidebar');
+  topBar = document.getElementById('top-bar');
+
+  // Populate CA in header center
   const caEl = document.getElementById('top-bar-ca');
-  if (!caEl) return;
-  if (CA) {
+  if (caEl && CA) {
     caEl.innerHTML = `
       <span class="top-bar-ca-label">CA:</span>
       <span class="top-bar-ca" id="ca-display" title="Click to copy">${CA}</span>
@@ -77,11 +119,46 @@ function initCA() {
       });
     });
   }
+
+  // Search
+  searchInput.addEventListener('input', (e) => {
+    buildSidebar(e.target.value);
+  });
+
+  // Mobile sidebar toggle
+  document.getElementById('mobile-toggle').addEventListener('click', () => {
+    sidebar.classList.toggle('open');
+  });
+
+  // Close sidebar on overlay click
+  document.getElementById('sidebar-overlay').addEventListener('click', () => {
+    sidebar.classList.remove('open');
+  });
 }
-initCA();
+
+// ─── View Toggle ───
+function showHero() {
+  heroSection.style.display = '';
+  appShell.style.display = 'none';
+}
+
+function showApp() {
+  heroSection.style.display = 'none';
+  appShell.style.display = '';
+  initAppShell();
+}
+
+// ─── Top Bar ───
+function updateTopBar(title, icon) {
+  const leftEl = document.querySelector('.top-bar-left');
+  if (leftEl) {
+    leftEl.innerHTML = `<span class="icon">${icon || '⊙'}</span><span>${title || 'Home'}</span>`;
+  }
+}
 
 // Build sidebar navigation
 function buildSidebar(filter = '') {
+  if (!sidebarNav) return;
   const lf = filter.toLowerCase();
   let html = '';
 
@@ -115,32 +192,7 @@ function buildSidebar(filter = '') {
   sidebarNav.innerHTML = html;
 }
 
-// ─── Render: Landing page (choose mode) ───
-function renderLanding() {
-  mainContent.innerHTML = `
-    <div class="landing">
-      <h1>just5min</h1>
-      <p>A collection of small, focused utilities to help you launch your token on Bags. Everything runs in your browser — no tracking, no accounts.</p>
-      <div class="landing-options">
-        <a href="#/launch" class="landing-card">
-          <span class="landing-card-icon">→</span>
-          <div class="landing-card-title">Launch System</div>
-          <div class="landing-card-desc">All-in-one workflow. Branding, logo, QR code, social media assets, watermark, and meta tags — in a single guided page.</div>
-          <span class="landing-card-tag">Recommended</span>
-        </a>
-        <a href="#/tools" class="landing-card">
-          <span class="landing-card-icon">◇</span>
-          <div class="landing-card-title">Individual Tools</div>
-          <div class="landing-card-desc">Browse all ${TOOLS.length} tools individually. Colour converters, calculators, image tools, typography utilities, and more.</div>
-          <span class="landing-card-tag">${TOOLS.length} tools</span>
-        </a>
-      </div>
-    </div>
-  `;
-  updateTopBar('Home', '⊙');
-}
-
-// ─── Render: Tools browse page (old homepage) ───
+// ─── Render: Tools browse page ───
 function renderToolsBrowse() {
   let html = '';
 
@@ -169,7 +221,7 @@ function renderToolsBrowse() {
       <h2>About</h2>
       <p>just5min is a collection of small, focused utilities that respect your privacy and work entirely in your browser. No data leaves your machine, no accounts required, no tracking. Just tools that do what they say.</p>
       <div class="about-meta">
-        <dl><dt>Made by</dt><dd>launch</dd></dl>
+        <dl><dt>Made by</dt><dd>Matitaben</dd></dl>
         <dl><dt>Source</dt><dd>just5min</dd></dl>
       </div>
       <div class="about-footer">Built with Vite and vanilla JS. All processing happens locally in your browser.</div>
@@ -261,33 +313,25 @@ function route() {
   const hash = location.hash.slice(2) || '';
 
   if (!hash || hash === '/') {
-    renderLanding();
+    // Landing → show hero, hide app shell
+    showHero();
   } else if (hash === 'launch') {
+    showApp();
     renderLaunchSystem();
   } else if (hash === 'tools') {
+    showApp();
     renderToolsBrowse();
   } else {
+    showApp();
     renderTool(hash);
   }
 
-  buildSidebar();
-  sidebar.classList.remove('open');
+  if (appInitialized) {
+    buildSidebar();
+    sidebar.classList.remove('open');
+  }
 }
 
 window.addEventListener('hashchange', route);
 window.addEventListener('load', route);
 
-// Search
-searchInput.addEventListener('input', (e) => {
-  buildSidebar(e.target.value);
-});
-
-// Mobile sidebar toggle
-document.getElementById('mobile-toggle').addEventListener('click', () => {
-  sidebar.classList.toggle('open');
-});
-
-// Close sidebar on overlay click
-document.getElementById('sidebar-overlay').addEventListener('click', () => {
-  sidebar.classList.remove('open');
-});

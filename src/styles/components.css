@@ -4,26 +4,29 @@
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 6px 14px;
-  font-family: var(--font-mono);
+  padding: 8px 18px;
+  font-family: var(--font-sans);
   font-size: var(--font-size-sm);
-  font-weight: 500;
+  font-weight: 600;
   border: 1px solid var(--border-primary);
-  border-radius: var(--radius-sm);
+  border-radius: 50px;
   cursor: pointer;
-  transition: all var(--transition-fast);
+  transition: all var(--transition-base);
   white-space: nowrap;
+  letter-spacing: 0.1px;
 }
 
 .btn-primary {
   background: var(--text-primary);
-  color: var(--bg-primary);
+  color: #fff;
   border-color: var(--text-primary);
 }
 
 .btn-primary:hover {
-  background: var(--text-secondary);
-  border-color: var(--text-secondary);
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }
 
 .btn-secondary {
@@ -33,7 +36,7 @@
 }
 
 .btn-secondary:hover {
-  background: var(--bg-card-hover);
+  background: var(--bg-muted);
   border-color: var(--border-secondary);
 }
 
@@ -48,23 +51,25 @@
   color: var(--text-primary);
 }
 
-.btn-sm { padding: 3px 8px; font-size: var(--font-size-xs); }
+.btn-sm { padding: 4px 10px; font-size: var(--font-size-xs); }
 
 .copy-btn {
-  padding: 2px 8px;
-  font-family: var(--font-mono);
+  padding: 4px 12px;
+  font-family: var(--font-sans);
   font-size: var(--font-size-xs);
+  font-weight: 500;
   background: var(--bg-muted);
   border: 1px solid var(--border-primary);
-  border-radius: var(--radius-sm);
+  border-radius: 20px;
   cursor: pointer;
   color: var(--text-secondary);
   transition: all var(--transition-fast);
 }
 
 .copy-btn:hover {
-  background: var(--border-primary);
-  color: var(--text-primary);
+  background: var(--text-primary);
+  color: #fff;
+  border-color: var(--text-primary);
 }
 
 /* ─── Cards ─── */
@@ -72,7 +77,7 @@
   background: var(--bg-card);
   border: 1px solid var(--border-primary);
   border-radius: var(--radius-lg);
-  padding: var(--spacing-lg);
+  padding: var(--spacing-xl);
   transition: all var(--transition-base);
   text-decoration: none;
   color: inherit;
@@ -80,16 +85,16 @@
 }
 
 .card:hover {
-  background: var(--bg-card-hover);
   border-color: var(--border-secondary);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
 }
 
 .card-icon {
-  font-size: 20px;
-  margin-bottom: 10px;
-  width: 36px;
-  height: 36px;
+  font-size: 22px;
+  margin-bottom: 14px;
+  width: 42px;
+  height: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -102,43 +107,44 @@
   font-size: var(--font-size-md);
   font-weight: 600;
   color: var(--text-primary);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
+  letter-spacing: -0.2px;
 }
 
 .card-desc {
   font-size: var(--font-size-sm);
   color: var(--text-tertiary);
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 .card-badge {
   display: inline-block;
   font-size: 9px;
-  padding: 1px 6px;
-  border-radius: 4px;
+  padding: 2px 8px;
+  border-radius: 20px;
   font-weight: 600;
   text-transform: capitalize;
   margin-left: 6px;
   vertical-align: middle;
+  letter-spacing: 0.3px;
 }
 
 .card-badge.new {
-  background: var(--accent-light);
-  color: var(--accent-primary);
-  border: 1px solid #fcd34d;
+  background: var(--text-primary);
+  color: #fff;
 }
 
 .card-badge.beta {
-  background: #f0fdf4;
-  color: #15803d;
-  border: 1px solid #86efac;
+  background: transparent;
+  color: var(--text-tertiary);
+  border: 1px solid var(--border-secondary);
 }
 
 /* ─── Tool Cards Grid ─── */
 .tools-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: var(--spacing-md);
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
 }
 
 /* ─── Inputs ─── */
@@ -150,20 +156,20 @@ input[type="date"],
 textarea,
 select {
   width: 100%;
-  padding: 7px 10px;
-  font-family: var(--font-mono);
+  padding: 10px 14px;
+  font-family: var(--font-sans);
   font-size: var(--font-size-sm);
   background: var(--bg-input);
   border: 1px solid var(--border-primary);
   border-radius: var(--radius-sm);
   color: var(--text-primary);
   outline: none;
-  transition: border-color var(--transition-fast);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 input:focus, textarea:focus, select:focus {
   border-color: var(--border-secondary);
-  box-shadow: 0 0 0 2px rgba(180, 83, 9, 0.06);
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.03);
 }
 
 input::placeholder, textarea::placeholder {
@@ -171,9 +177,9 @@ input::placeholder, textarea::placeholder {
 }
 
 input[type="color"] {
-  width: 36px;
-  height: 36px;
-  padding: 2px;
+  width: 42px;
+  height: 42px;
+  padding: 3px;
   border: 1px solid var(--border-primary);
   border-radius: var(--radius-sm);
   cursor: pointer;
@@ -188,15 +194,17 @@ input[type="range"] {
 label {
   display: block;
   font-size: var(--font-size-xs);
-  font-weight: 500;
+  font-weight: 600;
   color: var(--text-tertiary);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .input-group {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
 }
 
 .controls-grid {
@@ -207,9 +215,9 @@ label {
 
 /* ─── File Drop Zone ─── */
 .file-drop {
-  border: 1px dashed var(--border-secondary);
+  border: 2px dashed var(--border-secondary);
   border-radius: var(--radius-lg);
-  padding: var(--spacing-2xl);
+  padding: var(--spacing-3xl);
   text-align: center;
   cursor: pointer;
   transition: all var(--transition-base);
@@ -218,18 +226,18 @@ label {
 }
 
 .file-drop:hover {
-  border-color: var(--accent-primary);
-  background: var(--accent-light);
-  color: var(--accent-primary);
+  border-color: var(--text-primary);
+  background: #f0f0f0;
+  color: var(--text-primary);
 }
 
 .file-drop.dragover {
-  border-color: var(--accent-primary);
-  background: var(--accent-light);
+  border-color: var(--text-primary);
+  background: #eee;
 }
 
-.file-drop-icon { font-size: 28px; margin-bottom: 8px; }
-.file-drop-text { font-size: var(--font-size-sm); }
+.file-drop-icon { font-size: 32px; margin-bottom: 10px; }
+.file-drop-text { font-size: var(--font-size-sm); font-weight: 500; }
 
 /* ─── Sections ─── */
 .section-heading {
@@ -240,6 +248,7 @@ label {
   display: flex;
   align-items: center;
   gap: 8px;
+  letter-spacing: -0.2px;
 }
 
 .section-heading .icon { font-size: 16px; }
@@ -247,15 +256,15 @@ label {
 /* ─── Tabs / Filters ─── */
 .tab-filter.active {
   background: var(--text-primary);
-  color: var(--bg-primary);
+  color: #fff;
   border-color: var(--text-primary);
 }
 
 /* ─── Toast System ─── */
 .toast-container {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 24px;
+  right: 24px;
   z-index: 9999;
   display: flex;
   flex-direction: column;
@@ -263,12 +272,13 @@ label {
 }
 
 .toast {
-  padding: 10px 16px;
+  padding: 12px 20px;
   background: var(--text-primary);
-  color: var(--bg-primary);
-  font-family: var(--font-mono);
+  color: #fff;
+  font-family: var(--font-sans);
   font-size: var(--font-size-sm);
-  border-radius: var(--radius-md);
+  font-weight: 500;
+  border-radius: 50px;
   box-shadow: var(--shadow-lg);
   animation: slideUp 0.3s ease;
 }
@@ -278,7 +288,7 @@ label {
   background: var(--bg-muted);
   border: 1px solid var(--border-primary);
   border-radius: var(--radius-md);
-  padding: var(--spacing-md);
+  padding: var(--spacing-lg);
   text-align: center;
 }
 
@@ -286,12 +296,16 @@ label {
   font-size: var(--font-size-xl);
   font-weight: 700;
   color: var(--text-primary);
+  letter-spacing: -0.3px;
 }
 
 .result-label {
   font-size: var(--font-size-xs);
   color: var(--text-tertiary);
-  margin-top: 2px;
+  margin-top: 4px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
 }
 
 /* ─── Output / Preview ─── */
@@ -299,7 +313,7 @@ label {
   background: var(--bg-muted);
   border: 1px solid var(--border-primary);
   border-radius: var(--radius-md);
-  padding: var(--spacing-md);
+  padding: var(--spacing-lg);
   font-family: var(--font-mono);
   font-size: var(--font-size-sm);
   color: var(--text-primary);
@@ -309,7 +323,7 @@ label {
   background: var(--bg-muted);
   border: 1px solid var(--border-primary);
   border-radius: var(--radius-lg);
-  padding: var(--spacing-lg);
+  padding: var(--spacing-xl);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -330,8 +344,8 @@ label {
 
 /* Match highlight (regex tester) */
 .match-highlight {
-  background: var(--accent-light);
-  color: var(--accent-primary);
-  border-radius: 2px;
-  padding: 0 2px;
+  background: #fef08a;
+  color: var(--text-primary);
+  border-radius: 3px;
+  padding: 0 3px;
 }

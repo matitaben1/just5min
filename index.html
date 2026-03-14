@@ -4,18 +4,70 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>just5min — Browser Tools</title>
-  <meta name="description" content="A collection of small, focused design &amp; development utilities. No tracking, no accounts — everything runs in your browser." />
+  <meta name="description" content="Short-form video editing for Influencers, Creators and Brands. A collection of browser-based tools — no tracking, no accounts." />
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/src/styles/index.css" />
 </head>
 <body>
-  <div class="app">
+
+  <!-- ═══ HERO SECTION (Landing Only) ═══ -->
+  <section class="hero-section" id="hero-section">
+    <!-- Video Background -->
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260228_065522_522e2295-ba22-457e-8fdb-fbcd68109c73.mp4" type="video/mp4" />
+    </video>
+
+    <!-- Floating Navbar -->
+    <nav class="hero-nav" id="hero-nav">
+      <div class="hero-nav-left">just5min</div>
+      <div class="hero-nav-center">
+        <a href="#/tools" class="hero-nav-link">tools</a>
+        <a href="#/launch" class="hero-nav-link">launch system</a>
+      </div>
+      <a href="#/tools" class="hero-nav-cta">
+        <span>browser tools</span>
+        <span class="hero-nav-cta-icon">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
+    </nav>
+
+    <!-- Hero Content -->
+    <div class="hero-content">
+      <h1 class="hero-headline">
+        <span class="hero-headline-top">just 5 min to perfect your</span>
+        <span class="hero-headline-bottom">design & ui workflow</span>
+      </h1>
+      <p class="hero-subtext">Essential, blazing fast browser utilities for Designers, Developers and Creators. No tracking, no accounts.</p>
+      <a href="#/tools" class="hero-cta-pill">
+        <span class="hero-cta-play">
+          <svg width="12" height="14" viewBox="0 0 12 14" fill="none">
+            <path d="M1 1.5V12.5L11 7L1 1.5Z" fill="#222" stroke="#222" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span>tools</span>
+      </a>
+    </div>
+
+    <!-- CA Display (Landing Page) -->
+    <div id="hero-ca-container" style="position: absolute; bottom: 84px; left: 50%; transform: translateX(-50%); z-index: 100; font-family: var(--font-sans); display: none; align-items: center; gap: 8px;"></div>
+
+    <!-- Made By Credit -->
+    <div style="position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); z-index: 100; font-family: var(--font-sans); font-size: 13px; color: rgba(255, 255, 255, 0.8); display: flex; align-items: center; gap: 8px;">
+      Made by <a href="https://x.com/matitaben" target="_blank" rel="noopener noreferrer" style="background: rgba(255, 255, 255, 0.2); padding: 4px 12px; border-radius: 50px; color: #fff; font-weight: 500; text-decoration: none; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); letter-spacing: 0.3px; transition: background 0.2s ease;" onmouseover="this.style.background='rgba(255, 255, 255, 0.3)'" onmouseout="this.style.background='rgba(255, 255, 255, 0.2)'">Matitaben</a>
+    </div>
+  </section>
+
+  <!-- ═══ SIDEBAR APP (Tool Pages) ═══ -->
+  <div class="app" id="app-shell" style="display:none;">
     <!-- Mobile Header -->
     <div class="mobile-header">
       <button class="mobile-toggle" id="mobile-toggle">☰</button>
