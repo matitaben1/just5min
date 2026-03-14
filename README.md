@@ -3,7 +3,7 @@
 **Essential, blazing fast browser utilities for Designers, Developers and Creators.**  
 No tracking. No accounts. No data leaves your machine.
 
-> Built by [Matitaben](https://x.com/matitaben) · [just5min.com](#)
+> Built by [Matitaben](https://x.com/matitaben) · [just5min](#)
 
 ---
 
